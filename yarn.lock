@@ -1117,7 +1117,7 @@
     "@vimeo/player" "^2.10.0"
     prop-types "^15.7.2"
 
-"@vimeo/player@^2.10.0":
+"@vimeo/player@^2.10.0", "@vimeo/player@^2.12.2":
   version "2.12.2"
   resolved "https://registry.yarnpkg.com/@vimeo/player/-/player-2.12.2.tgz#04ec04c6763aba96bfce98d6e7167c160ac7be25"
   dependencies:

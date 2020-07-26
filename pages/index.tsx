@@ -14,12 +14,13 @@ function Home(): JSX.Element {
       <div style={{ display: "flex", flexWrap: "wrap" }}>
         {vids.map((vid, index) => (
           <div key={vid} role="button" style={{ margin: 10 }}>
-            <Vimeo video={vid} showTitle controls={false} width={300} loop />
+            <Vimeo video={vid} showTitle controls={true} width={300} loop />
           </div>
         ))}
       </div>
     </div>
   );
 }
+
 
 export default Home;

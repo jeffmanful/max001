@@ -37,6 +37,15 @@ export default class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Lateef&display=swap"
             rel="stylesheet"
           />
+          <link
+            rel="stylesheet"
+            href="https://cdn.plyr.io/3.6.2/plyr.css"
+          ></link>
+          <link
+            rel="stylesheet"
+            href="https://cdn.plyr.io/3.5.2/plyr.css"
+          ></link>
+          <script src="https://cdn.plyr.io/3.6.2/plyr.polyfilled.js"></script>
         </Head>
         <body>
           <Main />

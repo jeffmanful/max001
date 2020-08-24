@@ -12,18 +12,32 @@ const GlobalStyles = createGlobalStyle`
     --max-lines-news: 6;
   }
 
+  @font-face {
+    font-family: Silver;
+    src: url('silver_south_serif.otf');
+    font-weight: bold;
+  }
+
+  @font-face {
+    font-family: Daikon;
+    src: url('daikon-regular.oft');
+    font-weight: bold;
+  }
+
+  @font-face {
+    font-family: Daikon Light;
+    src: url('daikon-light.otf');
+    font-weight: 400;
+  }
+  
   html, body {
     margin: 0 !important;
     font-family: 'porpora', Tahoma, Geneva, sans-serif;
     font-size: 10px;
-  }
-
-  html {
-    height: 100%;
+    height: 100%
   }
 
   body {
-    height: 100%;
     margin: 0;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -45,6 +59,11 @@ const GlobalStyles = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    font-family: Silver;
+  }
+
+  p, h4 {
+    font-family: Daikon Light;
   }
 
   /* Do we need this?? */
@@ -62,6 +81,17 @@ const GlobalStyles = createGlobalStyle`
     font: inherit;
     cursor: pointer;
     outline: inherit;
+  }
+
+  .container {
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    /* OLD */
+    scroll-snap-points-y: repeat(300px);
+
+    section {
+      scroll-snap-align: start;
+    }
   }
 `;
 

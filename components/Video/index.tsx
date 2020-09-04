@@ -1,17 +1,6 @@
 import Plyr from "react-plyr";
-import { createRef, useState } from "react";
+import { createRef, useState, useEffect } from "react";
 import styled from "styled-components";
-
-const VideoTitle = styled.h4`
-  position: absolute;
-  color: coral;
-  font-size: 32px;
-  right: 0;
-  transform: translateY(-85px);
-  z-index: 99999999;
-  opacity: 0.9;
-  text-align: right;
-`;
 
 const VideoGalleryTitle = styled.h4`
   color: black;
@@ -20,11 +9,10 @@ const VideoGalleryTitle = styled.h4`
   font-size: 18px;
 `;
 
-// add custom hover effects
-// use custom cursor for play and pause
-const Wrapper = styled.div`
+const Wrapper = styled.div<VideoProps>`
   .plyr--full-ui input[type="range"] {
     color: limegreen;
+    display: ${(props) => (props.visible ? "block" : "none")};
   }
 `;
 
@@ -33,19 +21,25 @@ interface VideoProps {
   title?: string;
   description?: string;
   gallery?: boolean;
+  visible?: boolean;
+  autoplay?: boolean;
 }
 
 const Video: React.FC<VideoProps> = ({
-  id = "76979871",
+  id,
   title,
   description,
   gallery,
+  autoplay,
 }) => {
   const [fullscreen, setFullscreen] = useState({
-    enabled: true,
+    enabled: false,
   });
+  const [videoId, setId] = useState(id);
 
-  // keep track of the playing status of each video here
+  useEffect(() => {
+    setId(id);
+  }, [id]);
 
   const myRef: any = createRef();
 
@@ -70,13 +64,16 @@ const Video: React.FC<VideoProps> = ({
     >
       <Plyr
         type="vimeo"
-        videoId={id}
+        videoId={videoId}
         ref={myRef}
         hideControls
         controls={[""]}
         fullscreen={fullscreen}
+        debug
+        enable={false}
+        blankVideo
+        autoplay={autoplay}
       />
-      {/* <VideoTitle>{title}</VideoTitle> */}
       {gallery && <VideoGalleryTitle>{title}</VideoGalleryTitle>}
       <p>{description}</p>
     </Wrapper>

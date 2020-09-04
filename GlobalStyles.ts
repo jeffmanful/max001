@@ -34,13 +34,15 @@ const GlobalStyles = createGlobalStyle`
     margin: 0 !important;
     font-family: 'porpora', Tahoma, Geneva, sans-serif;
     font-size: 10px;
-    height: 100%
+    height: 100%;
   }
 
   body {
     margin: 0;
     background-repeat: no-repeat;
     background-attachment: fixed;
+    background: black;
+    overflow: hidden;
   }
 
   * {
@@ -60,6 +62,7 @@ const GlobalStyles = createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
     font-family: Silver;
+    color: white;
   }
 
   p, h4 {

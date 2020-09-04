@@ -1,67 +1,80 @@
 import styled from "styled-components";
-import { videos, showReelVideo } from "~/util/videoData";
-import Video from "~/components/Video";
-import { Tabs } from "~/components/Tabs";
-import { VideoGallery } from "~/components/VideoGallery";
+import { videos } from "~/util/videoData";
 import Layout from "~/components/Layout";
+import Panel from "~/components/Panel";
+import { useState, useEffect } from "react";
 
-const MainVideo = styled.div`
-  width: 100%;
-  @media only screen and (min-width: 500px) {
-    .plyr {
-      max-height: 100px;
-      opacity: 0.8;
-    }
-  }
-`;
-
-const Lay = styled.div`
+const WorkLayout = styled.div`
   display: flex;
   justify-content: space-between;
 
   .left {
-    max-width: 20%;
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+    overflow: scroll;
   }
 
   .right {
-    overflow: scroll;
+    .plyr {
+      max-height: 100px;
+      opacity: 0.8;
+    }
     height: 800px;
     flex-direction: column;
   }
 `;
 
-const Reel = () => {
+const Work = () => {
+  const [currentTitle, setTitle] = useState(null);
+  const [currentVid, setVid] = useState(videos[0]);
+
+  const handleHover = (event, title) => {
+    if (currentTitle !== title) {
+      setTitle(title);
+    }
+  };
+
+  const handleLeave = () => {
+    setTitle(null);
+  };
+
+  useEffect(() => {
+    const vid = videos.filter((v) => v.brand === currentTitle)[0];
+    setVid(vid);
+  }, [currentTitle]);
+
   return (
-    <Layout>
-      {/* Show reel video */}
-      <h1>Projects</h1>
-      <MainVideo>
-        {/* This should autoplay and loop */}
-        {/* <Video {...showReelVideo} /> */}
-      </MainVideo>
+    <Layout overflow="hidden">
+      <h1>Work</h1>
 
       {/* Tabs */}
-      <Lay>
+      <WorkLayout>
         <section className="left">
-          <Tabs>
-            <li>Music Videos</li>
-            <li>Documentaries</li>
-            <li>Short films</li>
-          </Tabs>
+          {videos.map(
+            (v) =>
+              v.brand && (
+                <>
+                  <Panel
+                    title={v.brand}
+                    key={v.id}
+                    onHover={handleHover}
+                    onLeave={handleLeave}
+                    video={v}
+                  />
+                </>
+              )
+          )}
         </section>
 
         <section className="right">
-          <VideoGallery>
-            {videos.map((v) => (
-              <Video {...v} key={v.id} gallery />
-            ))}
-          </VideoGallery>
+          <p>{currentVid?.title}</p>
         </section>
-      </Lay>
+      </WorkLayout>
 
       {/* Videos */}
     </Layout>
   );
 };
 
-export default Reel;
+export default Work;

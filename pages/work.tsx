@@ -11,7 +11,7 @@ const WorkLayout = styled.div`
   .left {
     display: flex;
     flex-direction: column;
-    height: 500px;
+    height: 800px;
     overflow: scroll;
   }
 
@@ -46,9 +46,6 @@ const Work = () => {
 
   return (
     <Layout overflow="hidden">
-      <h1>Work</h1>
-
-      {/* Tabs */}
       <WorkLayout>
         <section className="left">
           {videos.map(
@@ -71,8 +68,6 @@ const Work = () => {
           <p>{currentVid?.title}</p>
         </section>
       </WorkLayout>
-
-      {/* Videos */}
     </Layout>
   );
 };
